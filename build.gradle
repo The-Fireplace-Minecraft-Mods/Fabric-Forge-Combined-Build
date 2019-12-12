@@ -153,8 +153,7 @@ task createFinalJar {
 }
 
 task extractMainJars {
-    inputs.file("$buildDir/libs/fabric/$archivesBaseName-${version}.jar")
-    inputs.file("$buildDir/libs/forge/$archivesBaseName-${version}.jar")
+    inputs.files(fileTree("$buildDir/libs"))
     outputs.files(fileTree("$buildDir/rebuild"))
     outputs.files(fileTree("$buildDir/tmp/expandedArchives"))
     finalizedBy createFinalJar
