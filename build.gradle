@@ -41,7 +41,7 @@ curseforge {
         mainArtifact(new File(buildDir, "$archivesBaseName-${version}.jar")) {
             displayName = "$archivesBaseName-$version"
             relations{
-                //TODO list possible relation types for newcomers?
+                //TODO list possibly relation types for newcomers?
                 //optionalLibrary 'yourSoftDepHere'
             }
         }
@@ -84,7 +84,7 @@ modsIO {
 
 ///*********************************************************************************************************************
 /// Everything below this line is used to make the build work. Only touch if you know what you're doing.
-/// If you do what you're doing and feel this could be improved, feel free to make a Pull Request to
+/// If you do know what you're doing and feel this could be improved, feel free to make a Pull Request to
 /// https://github.com/The-Fireplace-Minecraft-Mods/Fabric-Forge-Combined-Build
 ///*********************************************************************************************************************
 
