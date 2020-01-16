@@ -3,14 +3,14 @@
     <envs>
       <env name="MOD_CLASSES" value="$PROJECT_DIR$/forge/build/resources/main:$PROJECT_DIR$/forge/build/classes/java/main" />
       <env name="MCP_MAPPINGS" value="stable_53-1.14.2" />
-      <env name="MCP_VERSION" value="20190829.143755" />
-      <env name="FORGE_VERSION" value="28.1.79" />
+      <env name="MCP_VERSION" value="20191217.105819"/>
+      <env name="FORGE_VERSION" value="30.0.41"/>
       <env name="assetIndex" value="1.14" />
       <env name="assetDirectory" value="$USER_HOME$/.gradle/caches/forge_gradle/assets" />
       <env name="nativesDirectory" value="$PROJECT_DIR$/forge/build/natives" />
       <env name="FORGE_GROUP" value="net.minecraftforge" />
       <env name="target" value="fmluserdevclient" />
-      <env name="MC_VERSION" value="1.14.4" />
+      <env name="MC_VERSION" value="1.15.1"/>
     </envs>
     <option name="MAIN_CLASS_NAME" value="net.minecraftforge.userdev.LaunchTesting" />
     <module name="forge.main" />
