@@ -14,6 +14,7 @@ There are several advantages to making your release this way: Users will not hav
 3. To set up your publishing, you will want to find or create your `gradle.properties` in `GRADLE_USER_HOME` and add `curseForgeApiKey=YOUR_API_KEY_HERE`. If you're like me and have 
 an account on mods.io and hope they will update it to support 1.13+, you can also add that API key with `modsioApiKey=YOUR_API_KEY_HERE`
 4. ~~If you wish to sign your jar~~ TODO
+
 Run configurations are included when using IDEA, they are Forge Client, Forge Server, Fabric Client, and Fabric Server.
 
 ### Build:
