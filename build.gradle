@@ -24,7 +24,7 @@ apply plugin: 'net.cazzar.gradle.modsio'
 
 version = "1.0.0"
 group = "com.examplemod"
-archivesBaseName = "ExampleMod-1.15.1"
+archivesBaseName = "ExampleMod-1.15.2"
 
 //IMPORTANT! Use cfpublish and not the curseforge task directly
 curseforge {
@@ -35,7 +35,7 @@ curseforge {
         changelog = file('changelog.txt')
         //release, beta, or alpha
         releaseType = 'release'
-        addGameVersion '1.15.1'
+        addGameVersion '1.15.2'
         addGameVersion 'Java 8'
         addGameVersion 'Forge'
         addGameVersion 'Fabric'
@@ -75,7 +75,7 @@ modsIO {
     project{
         artifact = new File(new File(buildDir, "libs"), "$archivesBaseName-${version}.jar")
         modid = "0000"
-        minecraft = "1.15.1"
+        minecraft = "1.15.2"
         try{changelog = file('changelog.txt').text}catch(Exception ignored){changelog=""}
         //Set the tag to beta, alpha, etc if it isn't a release
         tag = ""
