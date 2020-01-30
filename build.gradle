@@ -26,6 +26,7 @@ version = "1.0.0"
 group = "com.examplemod"
 archivesBaseName = "ExampleMod-1.15.1"
 
+//IMPORTANT! Use cfpublish and not the curseforge task directly
 curseforge {
     apiKey = project.hasProperty("curseForgeApiKey") ? project.curseForgeApiKey : "empty"
     project {
@@ -38,26 +39,26 @@ curseforge {
         addGameVersion 'Java 8'
         addGameVersion 'Forge'
         addGameVersion 'Fabric'
-        mainArtifact(new File(buildDir, "$archivesBaseName-${version}.jar")) {
+        mainArtifact(new File(new File(buildDir, "libs"), "$archivesBaseName-${version}.jar")) {
             displayName = "$archivesBaseName-$version"
             relations{
                 //TODO list possibly relation types for newcomers?
                 //optionalLibrary 'yourSoftDepHere'
             }
         }
-        addArtifact(new File(buildDir, "$archivesBaseName-$version-forge-deobf.jar")) {
+        addArtifact(new File(new File(buildDir, "libs"), "$archivesBaseName-$version-forge-deobf.jar")) {
             displayName = "$archivesBaseName-$version-forge-deobf"
             changelog = "*This is a file for mod developers. If you don't know what to do with it, don't use it!*"
         }
-        addArtifact(new File(buildDir, "$archivesBaseName-$version-fabric-dev.jar")) {
+        addArtifact(new File(new File(buildDir, "libs"), "$archivesBaseName-$version-fabric-dev.jar")) {
             displayName = "$archivesBaseName-$version-fabric-dev"
             changelog = "*This is a file for mod developers. If you don't know what to do with it, don't use it!*"
         }
-        addArtifact(new File(buildDir, "$archivesBaseName-$version-fabric-sources.jar")) {
+        addArtifact(new File(new File(buildDir, "libs"), "$archivesBaseName-$version-fabric-sources.jar")) {
             displayName = "$archivesBaseName-$version-fabric-sources"
             changelog = "*This is a file for mod developers. If you don't know what to do with it, don't use it!*"
         }
-        addArtifact(new File(buildDir, "$archivesBaseName-$version-fabric-sources-dev.jar")) {
+        addArtifact(new File(new File(buildDir, "libs"), "$archivesBaseName-$version-fabric-sources-dev.jar")) {
             displayName = "$archivesBaseName-$version-fabric-sources-dev"
             changelog = "*This is a file for mod developers. If you don't know what to do with it, don't use it!*"
         }
@@ -72,7 +73,7 @@ curseforge {
 modsIO {
     key = project.hasProperty("modsioApiKey")? project.modsioApiKey : "empty"
     project{
-        artifact = new File(buildDir, "$archivesBaseName-${version}.jar")
+        artifact = new File(new File(buildDir, "libs"), "$archivesBaseName-${version}.jar")
         modid = "0000"
         minecraft = "1.15.1"
         try{changelog = file('changelog.txt').text}catch(Exception ignored){changelog=""}
@@ -81,6 +82,8 @@ modsIO {
         current = true
     }
 }
+
+task cfpublish(dependsOn: ['build', 'curseforge'])
 
 ///*********************************************************************************************************************
 /// Everything below this line is used to make the build work. Only touch if you know what you're doing.
