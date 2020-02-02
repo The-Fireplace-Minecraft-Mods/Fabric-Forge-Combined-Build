@@ -23,4 +23,8 @@ Run [gradle] in the repository root: `./gradlew[.bat] build`
 
 ### Build & Publish:
 **important**: Do not run the `curseforge` task directly or an empty jar will be published. Use `cfpublish` instead.
+
 Run [gradle] in the repository root: `./gradlew[.bat] cfpublish [uploadToModsio]`
+
+### Minor annoyances and fixes:
+- Problem: IDEA shows an error at `FileTree` in the main build.gradle. Solution: Open the `Gradle` tab and press the button for `Reimport all gradle projects` ![Reimport icon](https://i.imgur.com/UneSl68.png)
