@@ -4,7 +4,7 @@ This is a generic workspace for developing a Minecraft mod for [Forge](https://w
 ### Advantages
 - Users will not have to go reading through filenames to find which file is for which loader.
 - You can view both versions of the mod within one workspace.
-- Common, loader-independent files can be developed
+- Common, loader-independent files can be developed and used with both versions of the mod.
 - Common files don't have to be kept synced between two folders.
 
 ### Known caveats
