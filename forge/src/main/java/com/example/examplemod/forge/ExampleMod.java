@@ -1,5 +1,6 @@
 package com.example.examplemod.forge;
 
+import com.example.examplemod.CommonClassExample;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
@@ -44,6 +45,7 @@ public class ExampleMod
         // some preinit code
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
+        CommonClassExample.runCommonCode();
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
