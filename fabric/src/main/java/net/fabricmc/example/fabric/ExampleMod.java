@@ -1,5 +1,6 @@
  package net.fabricmc.example.fabric;
 
+import com.example.examplemod.CommonClassExample;
 import net.fabricmc.api.ModInitializer;
 
 public class ExampleMod implements ModInitializer {
@@ -10,5 +11,6 @@ public class ExampleMod implements ModInitializer {
 		// Proceed with mild caution.
 
 		System.out.println("Hello Fabric world!");
+		CommonClassExample.runCommonCode();
 	}
 }

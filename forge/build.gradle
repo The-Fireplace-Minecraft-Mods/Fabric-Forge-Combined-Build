@@ -20,6 +20,19 @@ allprojects {
     targetCompatibility = 1.8
 }
 
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+            srcDir '../common/src/main/java'
+        }
+        resources {
+            srcDir 'src/main/resources'
+            srcDir '../common/src/main/resources'
+        }
+    }
+}
+
 archivesBaseName = project.hasProperty("outputJarBaseName") ? project.outputJarBaseName : "forge"
 
 minecraft {

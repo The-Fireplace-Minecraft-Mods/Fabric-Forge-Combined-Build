@@ -5,6 +5,19 @@ plugins {
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+            srcDir '../common/src/main/java'
+        }
+        resources {
+            srcDir 'src/main/resources'
+            srcDir '../common/src/main/resources'
+        }
+    }
+}
+
 archivesBaseName = project.hasProperty("outputJarBaseName") ? project.outputJarBaseName : "fabric"
 
 minecraft {
