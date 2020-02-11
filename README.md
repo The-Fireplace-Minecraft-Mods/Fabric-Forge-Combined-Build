@@ -35,3 +35,4 @@ Run [gradle] in the repository root: `./gradlew[.bat] cfpublish [uploadToModsio]
 ### Common Problems and Solutions:
 - Problem: IDEA shows an error at `FileTree` in the main build.gradle. Solution: Open the `Gradle` tab and press the button for `Reimport all gradle projects` ![Reimport icon](https://i.imgur.com/UneSl68.png)
 - Problem: CurseForge doesn't allow tagging files as Fabric and Forge from the web interface. Solution: Upload the files using the `cfpublish` task.
+- Problem: fabric runClient crashes with `java.lang.ExceptionInInitializerError ... Caused by: java.lang.RuntimeException: java.lang.UnsatisfiedLinkError: Failed to locate library: liblwjgl.so`. Solution: Open a terminal in the fabric directory and run `./gradlew idea`. I recommend deleting the three files it generates in that folder.
