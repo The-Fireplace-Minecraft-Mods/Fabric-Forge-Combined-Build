@@ -16,7 +16,7 @@ This is a generic workspace for developing a Minecraft mod for [Forge](https://w
 
 ### Setup (Instructions written with IntelliJ Idea in mind - Eclipse or other IDE users may have to do steps 2 & 5 differently):
 1. Import the root build.gradle into your IDE as a gradle project.
-2. In IDEA, go to File>New>Module from Existing Sources… and choose `fabric/build.gradle` Repeat this step for `forge/build.gradle`.
+2. In IDEA, go to File>New>Module from Existing Sources… and choose `fabric/build.gradle` Repeat this step for `forge/build.gradle`. (Optional but recommended): Do the same for the `common` folder.
 3. To set up your publishing, you will want to find or create your `gradle.properties` in `GRADLE_USER_HOME` and add `curseForgeApiKey=YOUR_API_KEY_HERE`. If you're like me and have 
 an account on mods.io and hope they will update it to support 1.13+, you can also add that API key with `modsioApiKey=YOUR_API_KEY_HERE`
 4. ~~If you wish to sign your jar~~ TODO
