@@ -91,6 +91,16 @@ task cfpublish(dependsOn: ['build', 'curseforge'])
 /// https://github.com/The-Fireplace-Minecraft-Mods/Fabric-Forge-Combined-Build
 ///*********************************************************************************************************************
 
+boolean isWindows() {
+    return Os.isFamily(Os.FAMILY_WINDOWS);
+}
+
+String appendPrefix(String dir) {
+    if(isWindows())
+        dir = buildscript.sourceFile.getParentFile().getPath().toString()+"\\"+dir
+    return dir
+}
+
 void copyFiles(String dir) {
     println("Copying $dir files...")
     File outDir = new File("$buildDir/libs/$dir")
@@ -99,7 +109,8 @@ void copyFiles(String dir) {
     File devOutDir = new File("$buildDir/libs")
     if(!outDir.exists())
         outDir.mkdirs()
-    File inDir = new File("$dir/build/libs")
+    String inDirPath = appendPrefix(dir)
+    File inDir = new File("$inDirPath/build/libs")
     inDir.listFiles().each { file ->
         File outFile = null;
         //Main file from either one
@@ -171,8 +182,9 @@ task extractMainJars {
         rebuildDir.mkdirs()
         println("Extracting jars to merge...")
         Manifest manifest = null
+        String regexSafeBuildDir = buildDir.toString().replaceAll('\\\\', '\\\\\\\\')
         fabricTree.getFiles().each { file ->
-            String rebuildPath = file.getPath().replaceAll("$buildDir/tmp/expandedArchives/$archivesBaseName-${version}.jar_[0-z]+/", '')
+            String rebuildPath = isWindows() ? file.getPath().replaceAll("$regexSafeBuildDir\\\\tmp\\\\expandedArchives\\\\$archivesBaseName-${version}\\.jar_[0-9a-z]+\\\\", '') : file.getPath().replaceAll("$regexSafeBuildDir/tmp/expandedArchives/$archivesBaseName-${version}.jar_[0-z]+/", '')
             //Make sure to properly merge the manifests of the jars
             if (rebuildPath == "META-INF/MANIFEST.MF") {
                 FileInputStream inputStream = new FileInputStream(file)
@@ -186,7 +198,7 @@ task extractMainJars {
             }
         }
         forgeTree.getFiles().each { file ->
-            String rebuildPath = file.getPath().replaceAll("$buildDir/tmp/expandedArchives/$archivesBaseName-${version}.jar_[0-z]+/", '')
+            String rebuildPath = isWindows() ? file.getPath().replaceAll("$regexSafeBuildDir\\\\tmp\\\\expandedArchives\\\\$archivesBaseName-${version}\\.jar_[0-9a-z]+\\\\", '') : file.getPath().replaceAll("$regexSafeBuildDir/tmp/expandedArchives/$archivesBaseName-${version}.jar_[0-z]+/", '')
             //Make sure to properly merge the manifests of the jars
             if (rebuildPath == "META-INF/MANIFEST.MF") {
                 FileInputStream inputStream = new FileInputStream(file)
@@ -240,13 +252,14 @@ task execBuilds {
     outputs.files(fileTree("fabric/build/libs"))
     finalizedBy copyFiles
     doLast {
+        def gradleFile = isWindows() ? "./gradlew.bat" : "./gradlew"
         def sout = System.out, serr = System.err
-        def procFabric = "./gradlew build -Pversion=$version -Pgroup=$group -PoutputJarBaseName=$archivesBaseName".execute(null, new File("fabric"))
+        def procFabric = "$gradleFile build -Pversion=$version -Pgroup=$group -PoutputJarBaseName=$archivesBaseName".execute(null, new File("fabric"))
         procFabric.consumeProcessOutput(sout, serr)
         //TODO Test if concurrent even does it any differently
         if (!project.hasProperty("concurrent") || !project.concurrent)
             procFabric.waitForOrKill(1800000)
-        def procForge = "./gradlew build -Pversion=$version -Pgroup=$group -PoutputJarBaseName=$archivesBaseName".execute(null, new File("forge"))
+        def procForge = "$gradleFile build -Pversion=$version -Pgroup=$group -PoutputJarBaseName=$archivesBaseName".execute(null, new File("forge"))
         procForge.consumeProcessOutput(sout, serr)
         if (project.hasProperty("concurrent") && project.concurrent)
             procFabric.waitForOrKill(1800000)
